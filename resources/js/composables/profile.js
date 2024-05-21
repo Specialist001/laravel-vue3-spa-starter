@@ -15,7 +15,7 @@ export default function useProfile() {
 
     const getProfile = async () => {
         profile.value = store.getters["auth/user"]
-        // axios.get('/api/user')
+        // axios.get('/api/adm/user')
         //     .then(({data}) => {
         //         profile.value = data.data;
         //     })
@@ -27,7 +27,7 @@ export default function useProfile() {
         isLoading.value = true
         validationErrors.value = {}
 
-        axios.put('/api/user', profile)
+        axios.put('/api/adm/user', profile)
             .then(({data}) => {
                 if (data.success) {
                     store.commit('auth/SET_USER', data.data)

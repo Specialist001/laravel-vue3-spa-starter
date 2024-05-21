@@ -24,7 +24,7 @@ export default function usePosts() {
         order_column = 'created_at',
         order_direction = 'desc'
     ) => {
-        axios.get('/api/posts?page=' + page +
+        axios.get('/api/adm/posts?page=' + page +
             '&search_category=' + search_category +
             '&search_id=' + search_id +
             '&search_title=' + search_title +
@@ -38,7 +38,7 @@ export default function usePosts() {
     }
 
     const getPost = async (id) => {
-        axios.get('/api/posts/' + id)
+        axios.get('/api/adm/posts/' + id)
             .then(response => {
                 post.value = response.data.data;
             })
@@ -57,7 +57,7 @@ export default function usePosts() {
             }
         }
 
-        axios.post('/api/posts', serializedPost,{
+        axios.post('/api/adm/posts', serializedPost,{
             headers: {
                 "content-type": "multipart/form-data"
             }
@@ -83,7 +83,7 @@ export default function usePosts() {
         isLoading.value = true
         validationErrors.value = {}
 
-        axios.put('/api/posts/' + post.id, post)
+        axios.put('/api/adm/posts/' + post.id, post)
             .then(response => {
                 router.push({name: 'posts.index'})
                 swal({
@@ -113,7 +113,7 @@ export default function usePosts() {
         })
             .then(result => {
                 if (result.isConfirmed) {
-                    axios.delete('/api/posts/' + id)
+                    axios.delete('/api/adm/posts/' + id)
                         .then(response => {
                             getPosts()
                             router.push({name: 'posts.index'})

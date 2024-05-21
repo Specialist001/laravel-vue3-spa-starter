@@ -48,7 +48,7 @@ const store = createStore({
 
           async fetchUser ({ commit }) {
             try {
-              const { data } = await axios.get('/api/user')
+              const { data } = await axios.get('/api/adm/user')
               commit('FETCH_USER_SUCCESS', { user: data })
             } catch (e) {
               commit('FETCH_USER_FAILURE')
@@ -61,14 +61,14 @@ const store = createStore({
 
           async logout ({ commit }) {
             try {
-              await axios.post('/api/logout')
+              await axios.post('/api/adm/logout')
             } catch (e) { }
 
             commit('LOGOUT')
           },
 
         async fetchOauthUrl (ctx, { provider }) {
-            const { data } = await axios.post(`/api/oauth/${provider}`)
+            const { data } = await axios.post(`/api/adm/oauth/${provider}`)
 
             return data.url
            }

@@ -24,7 +24,7 @@ export default {
     },
     actions: {
         login({commit}) {
-            return axios.get('/api/user').then(({data}) => {
+            return axios.get('/api/adm/user').then(({data}) => {
                 commit('SET_USER', data)
                 commit('SET_AUTHENTICATED', true)
             }).catch(({res}) => {
@@ -33,7 +33,7 @@ export default {
             })
         },
         getUser({commit}) {
-            return axios.get('/api/user').then(({data}) => {
+            return axios.get('/api/adm/user').then(({data}) => {
                 if (data.success) {
                     commit('SET_USER', data.data)
                     commit('SET_AUTHENTICATED', true)

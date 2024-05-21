@@ -21,7 +21,7 @@ export default function useCategories() {
         order_column = 'created_at',
         order_direction = 'desc'
     ) => {
-        axios.get('/api/categories?page=' + page +
+        axios.get('/api/adm/categories?page=' + page +
             '&search_id=' + search_id +
             '&search_title=' + search_title +
             '&search_global=' + search_global +
@@ -33,7 +33,7 @@ export default function useCategories() {
     }
 
     const getCategory = async (id) => {
-        axios.get('/api/categories/' + id)
+        axios.get('/api/adm/categories/' + id)
             .then(response => {
                 category.value = response.data.data;
             })
@@ -45,7 +45,7 @@ export default function useCategories() {
         isLoading.value = true
         validationErrors.value = {}
 
-        axios.post('/api/categories', category)
+        axios.post('/api/adm/categories', category)
             .then(response => {
                 router.push({name: 'categories.index'})
                 swal({
@@ -67,7 +67,7 @@ export default function useCategories() {
         isLoading.value = true
         validationErrors.value = {}
 
-        axios.put('/api/categories/' + category.id, category)
+        axios.put('/api/adm/categories/' + category.id, category)
             .then(response => {
                 router.push({name: 'categories.index'})
                 swal({
@@ -97,7 +97,7 @@ export default function useCategories() {
         })
             .then(result => {
                 if (result.isConfirmed) {
-                    axios.delete('/api/categories/' + id)
+                    axios.delete('/api/adm/categories/' + id)
                         .then(response => {
                             getCategories()
                             router.push({name: 'categories.index'})
@@ -117,7 +117,7 @@ export default function useCategories() {
     }
 
     const getCategoryList = async () => {
-        axios.get('/api/category-list')
+        axios.get('/api/adm/category-list')
             .then(response => {
                 categoryList.value = response.data.data;
             })

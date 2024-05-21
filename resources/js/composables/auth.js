@@ -98,7 +98,7 @@ export default function useAuth() {
         processing.value = true
         validationErrors.value = {}
 
-        await axios.post('/api/forget-password', forgotForm)
+        await axios.post('/api/adm/forget-password', forgotForm)
             .then(async response => {
                 swal({
                     icon: 'success',
@@ -122,7 +122,7 @@ export default function useAuth() {
         processing.value = true
         validationErrors.value = {}
 
-        await axios.post('/api/reset-password', resetForm)
+        await axios.post('/api/adm/reset-password', resetForm)
             .then(async response => {
                 swal({
                     icon: 'success',
@@ -179,7 +179,7 @@ export default function useAuth() {
     }
 
     const getAbilities = async() => {
-        await axios.get('/api/abilities')
+        await axios.get('/api/adm/abilities')
             .then(response => {
                 const permissions = response.data
                 const { can, rules } = new AbilityBuilder(createMongoAbility)

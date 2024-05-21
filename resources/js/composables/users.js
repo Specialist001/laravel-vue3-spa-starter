@@ -20,7 +20,7 @@ export default function useUsers() {
         order_column = 'created_at',
         order_direction = 'desc'
     ) => {
-        axios.get('/api/users?page=' + page +
+        axios.get('/api/adm/users?page=' + page +
             '&search_id=' + search_id +
             '&search_title=' + search_title +
             '&search_global=' + search_global +
@@ -32,7 +32,7 @@ export default function useUsers() {
     }
 
     const getUser = async (id) => {
-        axios.get('/api/users/' + id)
+        axios.get('/api/adm/users/' + id)
             .then(response => {
                 user.value = response.data.data;
             })
@@ -51,7 +51,7 @@ export default function useUsers() {
             }
         }
 
-        axios.post('/api/users', serializedPost)
+        axios.post('/api/adm/users', serializedPost)
             .then(response => {
                 router.push({name: 'users.index'})
                 swal({
@@ -73,7 +73,7 @@ export default function useUsers() {
         isLoading.value = true
         validationErrors.value = {}
 
-        axios.put('/api/users/' + user.id, user)
+        axios.put('/api/adm/users/' + user.id, user)
             .then(response => {
                 router.push({name: 'users.index'})
                 swal({
@@ -103,7 +103,7 @@ export default function useUsers() {
         })
             .then(result => {
                 if (result.isConfirmed) {
-                    axios.delete('/api/users/' + id)
+                    axios.delete('/api/adm/users/' + id)
                         .then(response => {
                             getUsers()
                             router.push({name: 'users.index'})

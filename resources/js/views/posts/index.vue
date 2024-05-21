@@ -42,7 +42,7 @@ function getImageUrl(post) {
 }
 
 onMounted(() => {
-    axios.get('/api/get-posts').then(({data}) => {
+    axios.get('/api/adm/get-posts').then(({data}) => {
         posts.value = data;
     })
 })

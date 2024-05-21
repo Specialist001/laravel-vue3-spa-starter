@@ -21,7 +21,7 @@ export default function usePermissions() {
         order_column = 'created_at',
         order_direction = 'desc'
     ) => {
-        axios.get('/api/permissions?page=' + page +
+        axios.get('/api/adm/permissions?page=' + page +
             '&search_id=' + search_id +
             '&search_title=' + search_title +
             '&search_global=' + search_global +
@@ -32,13 +32,13 @@ export default function usePermissions() {
             })
     }
     const getAllPermissions = async () => {
-        axios.get('/api/permissions/')
+        axios.get('/api/adm/permissions/')
             .then(response => {
                 allPermission.value = response.data.data;
             })
     }
     const getPermission = async (id) => {
-        axios.get('/api/permissions/' + id)
+        axios.get('/api/adm/permissions/' + id)
             .then(response => {
                 permission.value = response.data.data;
             })
@@ -50,7 +50,7 @@ export default function usePermissions() {
         isLoading.value = true
         validationErrors.value = {}
 
-        axios.post('/api/permissions', permission)
+        axios.post('/api/adm/permissions', permission)
             .then(response => {
                 router.push({name: 'permissions.index'})
                 swal({
@@ -72,7 +72,7 @@ export default function usePermissions() {
         isLoading.value = true
         validationErrors.value = {}
 
-        axios.put('/api/permissions/' + permission.id, permission)
+        axios.put('/api/adm/permissions/' + permission.id, permission)
             .then(response => {
                 router.push({name: 'permissions.index'})
                 swal({
@@ -102,7 +102,7 @@ export default function usePermissions() {
         })
             .then(result => {
                 if (result.isConfirmed) {
-                    axios.delete('/api/permissions/' + id)
+                    axios.delete('/api/adm/permissions/' + id)
                         .then(response => {
                             getRoles()
                             router.push({name: 'permissions.index'})

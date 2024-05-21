@@ -44,7 +44,7 @@ function getImageUrl(post) {
 }
 
 onMounted(() => {
-    axios.get('/api/get-category-posts/' + route.params.id).then(({data}) => {
+    axios.get('/api/adm/get-category-posts/' + route.params.id).then(({data}) => {
         posts.value = data;
     })
 })

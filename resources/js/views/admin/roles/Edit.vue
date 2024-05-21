@@ -77,10 +77,10 @@ const role = reactive({
 })
 const route = useRoute()
 
-let response = await axios.get('/api/permissions/')
+let response = await axios.get('/api/adm/permissions/')
 let allPermission = response.data.data;
 
-response = await axios.get('/api/role-permissions/' + route.params.id)
+response = await axios.get('/api/adm/role-permissions/' + route.params.id)
 let rolePermissionList = response.data.data;
 
 let diffPermission = getDifference(allPermission, rolePermissionList);

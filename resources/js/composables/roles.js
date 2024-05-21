@@ -21,7 +21,7 @@ export default function useRoles() {
         order_column = 'created_at',
         order_direction = 'desc'
     ) => {
-        axios.get('/api/roles?page=' + page +
+        axios.get('/api/adm/roles?page=' + page +
             '&search_id=' + search_id +
             '&search_title=' + search_title +
             '&search_global=' + search_global +
@@ -33,14 +33,14 @@ export default function useRoles() {
     }
 
     const getRole = async (id) => {
-        axios.get('/api/roles/' + id)
+        axios.get('/api/adm/roles/' + id)
             .then(response => {
                 role.value = response.data.data;
             })
     }
     const getRolePermissions = async (id) => {
 
-        axios.get('/api/role-permissions/' + id)
+        axios.get('/api/adm/role-permissions/' + id)
             .then(response => {
                 rolePermissionList.value = response.data.data;
             })
@@ -51,7 +51,7 @@ export default function useRoles() {
         isLoading.value = true
         validationErrors.value = {}
 
-        axios.post('/api/roles', role)
+        axios.post('/api/adm/roles', role)
             .then(response => {
                 router.push({name: 'roles.index'})
                 swal({
@@ -73,7 +73,7 @@ export default function useRoles() {
         isLoading.value = true
         validationErrors.value = {}
 
-        axios.put('/api/roles/' + role.id, role)
+        axios.put('/api/adm/roles/' + role.id, role)
             .then(response => {
                 router.push({name: 'roles.index'})
                 swal({
@@ -94,7 +94,7 @@ export default function useRoles() {
 
         isLoading.value = true
         validationErrors.value = {}
-        axios.put('/api/role-permissions', {permissions: JSON.stringify(permissions), role_id: role.id})
+        axios.put('/api/adm/role-permissions', {permissions: JSON.stringify(permissions), role_id: role.id})
             // .then(response => {
             //     router.push({name: 'roles.index'})
             //     swal({
@@ -128,7 +128,7 @@ export default function useRoles() {
         })
             .then(result => {
                 if (result.isConfirmed) {
-                    axios.delete('/api/roles/' + id)
+                    axios.delete('/api/adm/roles/' + id)
                         .then(response => {
                             getRoles()
                             router.push({name: 'roles.index'})
@@ -148,7 +148,7 @@ export default function useRoles() {
     }
 
     const getRoleList = async () => {
-        axios.get('/api/role-list')
+        axios.get('/api/adm/role-list')
             .then(response => {
                 roleList.value = response.data.data;
             })
